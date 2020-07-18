@@ -1,0 +1,46 @@
+<html>
+        <link rel="stylesheet" href="Styyle.css">
+ <body>
+        <form onsubmit="return addTask()">
+        <input type="text" id="todoName" placeholder="please enter todo name">
+        <button type="submit">Add todo</button>
+        </form>
+         
+        <ul id="todoList">
+        </ul>
+        <script type="text/javascript">
+        function addTask(){
+
+        let taskEntered=document.getElementById('todoName').value;
+                let newElement=document.createElement('li');
+                let value=document.createTextNode(taskEntered);
+                newElement.appendChild(value);
+                 
+                 //checkbox adding
+                let cb = document.createElement('input');
+                cb.type = 'checkbox';
+                cb.addEventListener("change", function(){
+                   this.parentNode.style.textDecoration="line-through";
+                   
+                })
+                newElement.appendChild(cb);
+           
+                //  adding button
+                let button=document.createElement('button');
+                button.style.width =50;
+                button.style.height = 20;
+                button.style.color='red';
+                button.innerHTML="delete";
+                button.addEventListener("click", function(){
+                      document.getElementById('todoList').removeChild(this.parentNode);
+                   
+                })
+                newElement.appendChild(button);
+
+                document.getElementById('todoList').appendChild(newElement);
+                return false;
+        }
+        </script>
+</body>
+</html>
+
